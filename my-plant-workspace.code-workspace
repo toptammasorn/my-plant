@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "my-plant-webapp"
+		},
+		{
+			"path": "my-plant-firmware"
+		}
+	],
+	"settings": {}
+}
