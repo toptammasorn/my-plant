@@ -8,6 +8,8 @@ import LoginPage from "./LoginPage";
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -16,9 +18,17 @@ const RegisterPage = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-      console.log("User registered successfully:", user);
+      console.log(user);
+      if (user) {
+        await setDoc(doc(db, "Users", user.uid), {
+          email: user.email,
+          firstname: firstname,
+          lastname: lastname,
+        });
+      }
+      console.log("User Registered Successfully!!");
     } catch (error) {
-      console.log(error.code);
+      console.log(error.message);
     }
   };
 
@@ -26,6 +36,26 @@ const RegisterPage = () => {
     <>
       <form onSubmit={handleRegister}>
         <h1>Sign Up</h1>
+        <div>
+          <label htmlFor="firstname">Firstname</label>
+          <input
+            id="firstname"
+            type="firstname"
+            value={firstname}
+            placeholder="Firstname"
+            onChange={(e) => setFirstname(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastname">Lastname</label>
+          <input
+            id="lastname"
+            type="lastname"
+            value={lastname}
+            placeholder="lastname"
+            onChange={(e) => setLastname(e.target.value)}
+          />
+        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input
