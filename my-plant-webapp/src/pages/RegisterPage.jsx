@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { auth, db } from "../firebase/config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
 
 import LoginPage from "./LoginPage";
 
@@ -28,13 +29,20 @@ const RegisterPage = () => {
         });
       }
       console.log("User Registered Successfully!!");
+      toast.success("User Registered Successfully!!", {
+        position: "top-center",
+      });
     } catch (error) {
       console.log(error.message);
+      toast.success(error.message, {
+        position: "top-right",
+      });
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <form onSubmit={handleRegister}>
         <h1>Sign Up</h1>
         <div>
