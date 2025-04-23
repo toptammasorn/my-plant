@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase/config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
@@ -12,6 +12,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+
+  let navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -32,6 +34,9 @@ const RegisterPage = () => {
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
     } catch (error) {
       console.log(error.message);
       toast.success(error.message, {
