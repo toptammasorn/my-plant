@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase/config.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import LoginPage from "./LoginPage";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmit = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     console.log(email);
     console.log(password);
-  };
-
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      console.log("User registered successfully:", user);
+    } catch (error) {
+      console.log(error.code);
+    }
   };
 
   return (
     <>
-      <form onClick={onSubmit}>
+      <form onSubmit={handleRegister}>
         <h1>Sign Up</h1>
         <div>
           <label htmlFor="email">Email</label>
@@ -30,7 +32,8 @@ const RegisterPage = () => {
             id="email"
             type="text"
             value={email}
-            onChange={onChangeEmail}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div>
@@ -39,7 +42,8 @@ const RegisterPage = () => {
             id="password"
             type="text"
             value={password}
-            onChange={onChangePassword}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div>
