@@ -6,6 +6,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 
 import LoginPage from "./LoginPage";
+import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -102,12 +103,7 @@ const RegisterPage = () => {
             Already have an account? <Link to={"/login"}>Log in</Link>
           </p>
         </div>
-        <div>
-          <h3>Or</h3>
-        </div>
-        <div>
-          <button>Sign in with Google</button>
-        </div>
+        <SignInWithGoogle />
       </form>
     </>
   );
