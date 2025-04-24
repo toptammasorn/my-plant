@@ -4,6 +4,8 @@ import { auth } from "../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 
+import SignInWithGoogle from "../components/signInWithGoogle.jsx";
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,6 +47,7 @@ const LoginPage = () => {
             type="text"
             value={email}
             placeholder="Email"
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -55,6 +58,7 @@ const LoginPage = () => {
             type="text"
             value={password}
             placeholder="Password"
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -66,12 +70,7 @@ const LoginPage = () => {
             Don't have account yet? <Link to={"/register"}>Sign up</Link>
           </p>
         </div>
-        <div>
-          <h3>Or</h3>
-        </div>
-        <div>
-          <button>Sign in with Google</button>
-        </div>
+        <SignInWithGoogle />
       </form>
     </>
   );

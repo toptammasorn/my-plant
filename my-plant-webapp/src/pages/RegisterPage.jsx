@@ -57,6 +57,7 @@ const RegisterPage = () => {
             type="firstname"
             value={firstname}
             placeholder="Firstname"
+            required
             onChange={(e) => setFirstname(e.target.value)}
           />
         </div>
@@ -67,6 +68,7 @@ const RegisterPage = () => {
             type="lastname"
             value={lastname}
             placeholder="lastname"
+            required
             onChange={(e) => setLastname(e.target.value)}
           />
         </div>
@@ -77,6 +79,7 @@ const RegisterPage = () => {
             type="text"
             value={email}
             placeholder="Email"
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -87,6 +90,7 @@ const RegisterPage = () => {
             type="text"
             value={password}
             placeholder="Password"
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
