@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Route,
   createBrowserRouter,
@@ -13,13 +13,6 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
-  // const [user, setUser] = useState();
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     setUser(user);
-  //   });
-  // }, []);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
