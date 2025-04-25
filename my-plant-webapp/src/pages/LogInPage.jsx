@@ -26,7 +26,7 @@ const LoginPage = () => {
       });
       setTimeout(() => {
         navigate("/dashboard");
-      }, 5000);
+      }, 2000);
     } catch (error) {
       console.log(error.message);
       toast.success(error.message, {

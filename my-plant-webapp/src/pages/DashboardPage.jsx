@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase/config.js";
 import { doc, getDoc } from "firebase/firestore";
-import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [userDetails, setUserDetails] = useState(null);
