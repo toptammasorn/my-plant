@@ -1,1 +1,26 @@
-/* @import "tailwindcss"; */
+@import "tailwindcss";
+
+/* .custom-grid {
+  transition: all 0.5s ease;
+}
+.custom-grid > div {
+  transition: all 0.5s ease;
+} */
+
+@media (max-height: 300px) {
+  .custom-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-height: 300px) and (max-height: 480px) {
+  .custom-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-height: 480px) {
+  .custom-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

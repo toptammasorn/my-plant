@@ -8,18 +8,27 @@ import {
 
 import { auth } from "./firebase/config.js";
 
+// pages
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+
+// components
+import SideBar from "./components/SideBar";
+
+// layouts
+import MainLayout from "./layouts/MainLayout";
 
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" index element={<RegisterPage />} />
-        <Route path="/register" index element={<RegisterPage />} />
-        <Route path="/login" index element={<LoginPage />} />
-        <Route path="/dashboard" index element={<DashboardPage />} />
+        <Route path="/" element={<RegisterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<MainLayout />}>
+          <Route index element={<DashboardPage />} />
+        </Route>
       </Route>
     )
   );
