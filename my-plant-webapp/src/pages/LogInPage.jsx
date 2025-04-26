@@ -24,9 +24,10 @@ const LoginPage = () => {
       toast.success("User Logged in Successfully!!", {
         position: "top-center",
       });
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
       toast.success(error.message, {

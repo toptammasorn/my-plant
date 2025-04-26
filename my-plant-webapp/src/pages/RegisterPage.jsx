@@ -35,9 +35,10 @@ const RegisterPage = () => {
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/login");
+      // }, 2000);
+      navigate("/login");
     } catch (error) {
       console.log(error.message);
       toast.success(error.message, {
