@@ -5,9 +5,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 
-import "../index.css";
-
-import LoginPage from "./LoginPage";
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
 const RegisterPage = () => {
@@ -16,10 +13,13 @@ const RegisterPage = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
 
+  const [isMiLA, setisMiLA] = useState(false);
+
   let navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setisMiLA(true);
     console.log(email);
     console.log(password);
     try {
@@ -37,9 +37,6 @@ const RegisterPage = () => {
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
-      // setTimeout(() => {
-      //   navigate("/login");
-      // }, 2000);
       navigate("/login");
     } catch (error) {
       console.log(error.message);
@@ -50,18 +47,37 @@ const RegisterPage = () => {
   };
 
   return (
-    <>
-      <div
-        className="flex items-center justify-center min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: "url('src/assets/backgrounds/lotr.jpg')" }}
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: "url('../src/assets/backgrounds/Terrarium-3.png')",
+      }}
+    >
+      <ToastContainer />
+      <form
+        onSubmit={handleRegister}
+        className="grid bg-white/80 p-8 rounded-lg shadow-md w-full max-w-md"
       >
-        <ToastContainer />
-        <form
-          onSubmit={handleRegister}
-          className=" bg-white/60 p-8 rounded-lg shadow-md w-full max-w-md space-y-6"
-        >
-          <h1 className="text-4xl font-bold text-center">Sign Up</h1>
-          <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 custom-grid">
+        {/* Header */}
+        <div>
+          <div className="form-header-prefix text-green-600">Become a</div>
+          <div className="form-header text-green-700">
+            Miniature Landscape Artist
+          </div>
+        </div>
+
+        {isMiLA && (
+          <div className="text-center text-red-800 mt-6 mb-2">
+            <p>You are Miniature Landscape Artist!</p>
+            <p>Please sign in</p>
+          </div>
+        )}
+
+        {/* Sign up with Email */}
+        <div>
+          {/* Inputs */}
+          <div className="grid gap-2 custom-grid mb-6">
+            {/* Firstname */}
             <div>
               <label htmlFor="firstname">Firstname</label>
               <input
@@ -71,21 +87,23 @@ const RegisterPage = () => {
                 placeholder="Firstname"
                 required
                 onChange={(e) => setFirstname(e.target.value)}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-500 hover:border-gray-500 transition duration-300"
+                className="form-input"
               />
             </div>
+            {/* Lastname */}
             <div>
               <label htmlFor="lastname">Lastname</label>
               <input
                 id="lastname"
                 type="lastname"
                 value={lastname}
-                placeholder="lastname"
+                placeholder="Lastname"
                 required
                 onChange={(e) => setLastname(e.target.value)}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-500 hover:border-gray-500 transition duration-300"
+                className="form-input"
               />
             </div>
+            {/* Email */}
             <div>
               <label htmlFor="email">Email</label>
               <input
@@ -95,9 +113,10 @@ const RegisterPage = () => {
                 placeholder="Email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-500 hover:border-gray-500 transition duration-300"
+                className="form-input"
               />
             </div>
+            {/* Password */}
             <div>
               <label htmlFor="password">Password</label>
               <input
@@ -107,33 +126,35 @@ const RegisterPage = () => {
                 placeholder="Password"
                 required
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:border-green-500 hover:border-gray-500 transition duration-300"
+                className="form-input"
               />
             </div>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="text-white bg-green-500 hover:bg-green-600 p-2 w-full rounded-md shadow-sm  transition duration-300"
-            >
+          {/* Sign up button */}
+          <div className="mb-6">
+            <button type="submit" class="form-submitButton">
               Sign up
             </button>
           </div>
-          <div className="text-center text-gray-600">
-            <p>
-              Already have an account?{" "}
-              <Link to={"/login"} className="text-blue-600 hover:text-blue-700">
-                Log in
-              </Link>
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <SignInWithGoogle />
-          </div>
-        </form>
-      </div>
-    </>
+        </div>
+
+        {/* If already have an account, press button to redirect to Login page */}
+        <div className="text-center text-gray-600 mb-6 text-shadow-sm">
+          <p>
+            You're a Miniature Landscape Artist?{" "}
+            <Link to={"/login"} className="text-blue-600 hover:text-blue-700">
+              Sign in
+            </Link>
+          </p>
+        </div>
+
+        {/*Sign in with Google */}
+        <div className="flex justify-center">
+          <SignInWithGoogle />
+        </div>
+      </form>
+    </div>
   );
 };
 

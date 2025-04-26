@@ -22,17 +22,17 @@ const SignInWithGoogle = () => {
   };
 
   return (
-    <div className="text-center w-60 space-y-6">
-      <div className="flex items-center justify-center gap-2 text-gray-400">
-        <hr className="w-full border-gray-300" />
+    <div className="text-center w-70">
+      <div className="flex items-center justify-center gap-2 mb-6 text-gray-400">
+        <hr className="w-full border-gray-400" />
         <span>OR</span>
-        <hr className="w-full border-gray-300" />
+        <hr className="w-full border-gray-400" />
       </div>
       <div>
         <button
           type="button"
           onClick={googleLogin}
-          className="w-full flex item-center justify-center gap-2 text-white font-semibold py-2 px-4 rounded-md bg-blue-500 hover:bg-blue-600 transition duration-300"
+          class="form-submitServiceButton"
         >
           <img
             src="src\assets\icons\google-symbol.png"
@@ -44,7 +44,7 @@ const SignInWithGoogle = () => {
             <span>|</span>
             <hr className="w-full border-gray-300" />
           </div>
-          <span>Sign in with Google</span>
+          Sign in with Google
         </button>
       </div>
     </div>
