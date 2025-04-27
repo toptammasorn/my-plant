@@ -94,7 +94,7 @@ const LoginPage = () => {
             </div>
             {/* Password */}
             <div>
-              <label htmlFor="password">Password</label>j
+              <label htmlFor="password">Password</label>
               <input
                 id="password"
                 type="text"
