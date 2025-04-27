@@ -140,13 +140,11 @@ const RegisterPage = () => {
         </div>
 
         {/* If already have an account, press button to redirect to Login page */}
-        <div className="text-center text-gray-600 mb-6 text-shadow-sm">
-          <p>
-            You're a Miniature Landscape Artist?{" "}
-            <Link to={"/login"} className="text-blue-600 hover:text-blue-700">
-              Sign in
-            </Link>
-          </p>
+        <div className="text-center text-gray-600 mb-6 text-shadow-sm flex flex-wrap justify-center">
+          <p className="mr-2">You're a Miniature Landscape Artist?</p>
+          <Link to={"/login"} className="text-blue-600 hover:text-blue-700">
+            Sign in
+          </Link>
         </div>
 
         {/*Sign in with Google */}
