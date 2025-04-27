@@ -19,7 +19,6 @@ const RegisterPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setisMiLA(true);
     console.log(email);
     console.log(password);
     try {
@@ -33,12 +32,16 @@ const RegisterPage = () => {
           lastname: lastname,
         });
       }
+      setisMiLA(false);
       console.log("User Registered Successfully!!");
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (error) {
+      setisMiLA(true);
       console.log(error.message);
       toast.success(error.message, {
         position: "top-right",
