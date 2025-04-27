@@ -36,10 +36,6 @@ label {
   @apply text-shadow-sm;
 }
 
-button {
-  @apply text-shadow-lg;
-}
-
 .form-header {
   @apply text-4xl text-shadow-sm font-bold text-center;
 }
