@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
+import Spinner from "../components/Spinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
@@ -10,30 +11,41 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [isNotMiLA, setIsNotMiLA] = useState(false);
+  const [isMiLA, setIsMiLA] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsNotMiLA(true);
     console.log(email);
     console.log(password);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
+      setIsMiLA(true);
       console.log(user);
       console.log("User Logged in Successfully!!");
       toast.success("User Logged in Successfully!!", {
         position: "top-center",
       });
+      setLoading(true);
+      await delay();
+      setLoading(false);
       navigate("/dashboard");
     } catch (error) {
+      setIsMiLA(false);
       console.log(error.message);
       toast.success(error.message, {
         position: "top-center",
       });
     }
+  };
+
+  const delay = () => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    });
   };
 
   return (
@@ -56,9 +68,9 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {isNotMiLA && (
+        {!isMiLA && (
           <div className="text-center text-red-800 mt-6 mb-2">
-            <p>You're not Miniature Landscape Artist!</p>
+            <p>You're not a Miniature Landscape Artist!</p>
             <p>Please sign up</p>
           </div>
         )}
@@ -98,7 +110,7 @@ const LoginPage = () => {
           {/* Sign in button */}
           <div className="mb-6">
             <button type="submit" class="form-submitButton">
-              Log in
+              {loading ? <Spinner pacColor={"#91fb8e"} /> : "Sign in"}
             </button>
           </div>
         </div>
