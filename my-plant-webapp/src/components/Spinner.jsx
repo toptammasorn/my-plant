@@ -1,14 +1,11 @@
 import React from "react";
 import { PacmanLoader } from "react-spinners";
 
-const Spinner = ({ loading }) => {
+const Spinner = ({ loading, pacColor }) => {
   return (
-    <PacmanLoader
-      color="#dfffde"
-      size={20}
-      cssOverride={{ textAlign: "center" }}
-      loading={loading}
-    />
+    <div className="flex justify-center items-center">
+      <PacmanLoader color={pacColor} size={10} loading={loading} />
+    </div>
   );
 };
 

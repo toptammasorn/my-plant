@@ -4,6 +4,7 @@ import { auth, db } from "../firebase/config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
+import Spinner from "../components/Spinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
@@ -14,6 +15,7 @@ const RegisterPage = () => {
   const [lastname, setLastname] = useState("");
 
   const [isMiLA, setisMiLA] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
 
@@ -37,9 +39,10 @@ const RegisterPage = () => {
       toast.success("User Registered Successfully!!", {
         position: "top-center",
       });
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      setLoading(true);
+      await delay();
+      setLoading(false);
+      navigate("/login");
     } catch (error) {
       setisMiLA(true);
       console.log(error.message);
@@ -47,6 +50,12 @@ const RegisterPage = () => {
         position: "top-right",
       });
     }
+  };
+
+  const delay = () => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    });
   };
 
   return (
@@ -137,7 +146,7 @@ const RegisterPage = () => {
           {/* Sign up button */}
           <div className="mb-6">
             <button type="submit" class="form-submitButton">
-              Sign up
+              {loading ? <Spinner pacColor={"#91fb8e"} /> : "Sign up"}
             </button>
           </div>
         </div>
@@ -151,9 +160,7 @@ const RegisterPage = () => {
         </div>
 
         {/*Sign in with Google */}
-        <div className="flex justify-center">
-          <SignInWithGoogle />
-        </div>
+        <SignInWithGoogle />
       </form>
     </div>
   );
