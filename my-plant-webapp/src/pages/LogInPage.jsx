@@ -112,9 +112,7 @@ const LoginPage = () => {
         </div>
 
         {/*Sign in with Google */}
-        <div className="flex justify-center">
-          <SignInWithGoogle />
-        </div>
+        <SignInWithGoogle />
       </form>
     </div>
   );
