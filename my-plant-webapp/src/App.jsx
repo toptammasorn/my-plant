@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Route,
+  Routes,
+  BrowserRouter,
   createBrowserRouter,
   createRoutesFromElements, // Corrected the typo here
   RouterProvider,
@@ -20,19 +22,23 @@ import SideBar from "./components/SideBar";
 import MainLayout from "./layouts/MainLayout";
 
 const App = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route>
+  return (
+    <BrowserRouter>
+      {/* Authentication */}
+      <Routes>
         <Route path="/" element={<RegisterPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<MainLayout />}>
-          <Route index element={<DashboardPage />} />
-        </Route>
-      </Route>
-    )
+      </Routes>
+
+      {/* Main pages */}
+      <div>
+        <Routes>
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-  return <RouterProvider router={router} />;
 };
 
 export default App;
