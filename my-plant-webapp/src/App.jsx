@@ -11,9 +11,11 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import InventoryPage from "./pages/InventoryPage";
+import ProfilePage from "./pages/ProfilePage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
+import Profile from "./pages/ProfilePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,7 @@ const router = createBrowserRouter(
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/inventory" element={<InventoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </>
   )

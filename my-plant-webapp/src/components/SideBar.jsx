@@ -68,7 +68,7 @@ const Sidebar = () => {
         </nav>
 
         {/* Profile*/}
-        <Link>
+        <Link to="/profile">
           <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg bg-gray-900 hover:bg-gray-700 transition-colors mb-2 gap-5">
             <img
               src="src/assets/icons/profile.png"
