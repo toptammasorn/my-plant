@@ -12,26 +12,30 @@ import {
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import InventoryPage from "./pages/InventoryPage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* Authentication */}
-        <Route path="/" element={<RegisterPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      {/* No layout */}
+      <Route path="/" element={<RegisterPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
 
-        {/* Main pages */}
-        <Route element={<MainLayout />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+      {/* With MainLayout */}
+      <Route element={<MainLayout />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/inventory" element={<InventoryPage />} />
+      </Route>
+    </>
+  )
+);
+
+const App = () => {
+  return <RouterProvider router={router} />;
 };
 
 export default App;
