@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ name, icon:Icon, value, color }) => {
+const Card = ({ name, icon: Icon, value, color, gif }) => {
   return (
     <motion.div
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
@@ -9,7 +9,12 @@ const Card = ({ name, icon:Icon, value, color }) => {
     >
       <div className="px-4 py-5 sm:p-6">
         <span className="flex items-center text-sm font-medium text-gray-400">
-          <Icon size={20} className="mr-2" style={{ color }} />
+          {gif ? (
+            <img src={gif} alt="icon" className="w-6 h-6 mr-2" />
+          ) : (
+            <Icon size={20} className="mr-2" style={{ color }} />
+          )}
+
           {name}
         </span>
         <p className="mt-1 text-3xl font-semibold text-gray-100">{value}</p>
