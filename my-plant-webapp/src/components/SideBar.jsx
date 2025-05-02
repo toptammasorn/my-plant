@@ -29,6 +29,7 @@ const Sidebar = () => {
       animate={{ width: isSidbarOpen ? 256 : 80 }}
     >
       <div className="h-full bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
+        {/* Sidebar toggle button */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -38,10 +39,11 @@ const Sidebar = () => {
           <Menu size={24} />
         </motion.button>
 
+        {/* Sidebar items */}
         <nav className="mt-8 flex-grow">
           {SIDEBAR_ITEMS.map((item) => (
             <Link key={item.href} to={item.href}>
-              <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2">
+              <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2 gap-5">
                 <item.icon
                   size={20}
                   style={{ color: item.color, minWidth: "20px" }}
@@ -64,6 +66,31 @@ const Sidebar = () => {
             </Link>
           ))}
         </nav>
+
+        {/* Profile*/}
+        <Link>
+          <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg bg-gray-900 hover:bg-gray-700 transition-colors mb-2 gap-5">
+            <img
+              src="src/assets/icons/profile.png"
+              alt="profile"
+              className="w-5 h-5"
+            />
+
+            <AnimatePresence>
+              {isSidbarOpen && (
+                <motion.span
+                  className="ml-4 whitespace-nowrap"
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: "auto" }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2, delay: 0.3 }}
+                >
+                  Profile
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </Link>
       </div>
     </motion.div>
   );
