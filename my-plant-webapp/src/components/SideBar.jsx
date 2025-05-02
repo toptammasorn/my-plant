@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { LayoutDashboard, Box, Menu } from "lucide-react";
+import { LayoutDashboard, Box, Wrench, Menu } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SIDEBAR_ITEMS = [
@@ -15,6 +15,12 @@ const SIDEBAR_ITEMS = [
     icon: Box,
     color: "#6EE7B7",
     href: "/inventory",
+  },
+  {
+    name: "Hardware",
+    icon: Wrench,
+    color: "#6EE7B7",
+    href: "/hardware",
   },
 ];
 

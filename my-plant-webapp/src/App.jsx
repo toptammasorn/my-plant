@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import InventoryPage from "./pages/InventoryPage";
 import ProfilePage from "./pages/ProfilePage";
+import HardwarePage from "./pages/HardwarePage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/inventory" element={<InventoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/hardware" element={<HardwarePage />} />
       </Route>
     </>
   )
