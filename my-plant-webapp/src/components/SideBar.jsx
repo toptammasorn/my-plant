@@ -1,5 +1,20 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { BarChart2, ShoppingBag } from "lucide-react";
+
+const SIDEBAR_ITEMS = [
+  {
+    name: "Dashboard",
+    icon: BarChart2,
+    color: "#6366f1",
+    path: "/",
+  },
+  {
+    name: "Inventory",
+    icon: ShoppingBag,
+    color: "#6EE7B7",
+    href: "/inventory",
+  },
+];
 
 const Sidebar = () => {
   return (
