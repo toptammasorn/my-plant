@@ -1,64 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase/config.js";
-import { doc, getDoc } from "firebase/firestore";
+import React from "react";
+import { motion } from "framer-motion";
+import { Thermometer, Droplet, Sun } from "lucide-react";
+
+// components
+import Header from "../components/common/Header";
+import Card from "../components/common/Card";
 
 const Dashboard = () => {
-  const [userDetails, setUserDetails] = useState(null);
-
-  let navigate = useNavigate();
-
-  const fetchUserData = async () => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        console.log("user: ", user);
-        const docRef = doc(db, "Users", user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setUserDetails(docSnap.data());
-          console.log("Doc snap data: ", docSnap.data());
-        } else {
-          console.log("User document not found");
-        }
-      } else {
-        console.log("User is not logged in");
-        navigate("/login");
-      }
-    });
-  };
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      navigate("/login");
-      console.log("User logged out successfully!!");
-    } catch (error) {
-      console.error("Error logging out: ", error);
-    }
-  };
-
   return (
-    <div>
-      {userDetails ? (
-        <>
-          <h3>Welcome {userDetails.firstname} 👋🏼</h3>
-          <div>
-            <p>Email: {userDetails.email}</p>
-            <p>First name: {userDetails.firstname}</p>
-            <p>Last name: {userDetails.lastname}</p>
-          </div>
-          <button style={{ backgroundColor: "red" }} onClick={handleLogout}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <h3>Loading</h3>
-        </>
-      )}
+    <div className="flex-1 overflow-auto relative z-10">
+      <Header title="Dashboard" />
+
+      <main className="max-w-7xl mx-auto py-6 px-4 lg:px-8">
+        {/* Values */}
+        <motion.div
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Card
+            name="Temperature (outside)"
+            icon={Thermometer}
+            value="31 °C"
+            color="#6366F1"
+          />
+          <Card
+            name="Temperature (inside)"
+            icon={Thermometer}
+            value="25 °C"
+            color="#6366F1"
+          />
+          <Card name="Humidity" icon={Droplet} value="70 %" color="#6366F1" />
+          <Card name="Light" icon={Sun} value="ON" color="#6366F1" />
+        </motion.div>
+      </main>
     </div>
   );
 };
