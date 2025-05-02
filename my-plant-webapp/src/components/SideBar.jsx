@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   Box,
@@ -9,7 +9,6 @@ import {
   CircleUserRound,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -42,6 +41,7 @@ const SIDEBAR_ITEMS = [
 const Sidebar = () => {
   const [isSidbarOpen, setIsSidbarOpen] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
   const auth = getAuth();
 
   const handleLogout = async () => {
@@ -116,7 +116,11 @@ const Sidebar = () => {
                 </button>
               ) : (
                 <Link key={item.href} to={item.href}>
-                  <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2 gap-5">
+                  <motion.div
+                    className={`flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2 gap-5
+                    ${location.pathname === item.href ? "bg-gray-700" : ""}
+                    `}
+                  >
                     <item.icon
                       size={20}
                       style={{ color: item.color, minWidth: "20px" }}
