@@ -7,7 +7,7 @@ const SIDEBAR_ITEMS = [
   {
     name: "Dashboard",
     icon: LayoutDashboard,
-    color: "#6366f1",
+    color: "#6EE7B7",
     href: "/dashboard",
   },
   {
