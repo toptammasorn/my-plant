@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { LayoutDashboard, Box, Wrench, LogOut, Menu } from "lucide-react";
+import {
+  LayoutDashboard,
+  Box,
+  Wrench,
+  LogOut,
+  Menu,
+  CircleUserRound,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
@@ -137,10 +144,11 @@ const Sidebar = () => {
           {/* Profile*/}
           <Link to="/profile">
             <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg bg-gray-900 hover:bg-gray-700 transition-colors mb-2 gap-5">
-              <img
+              <CircleUserRound
                 src="src/assets/icons/profile.png"
                 alt="profile"
-                className="w-5 h-5"
+                size={20}
+                style={{ minWidth: "20px" }}
               />
 
               <AnimatePresence>
