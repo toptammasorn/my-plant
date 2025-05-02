@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BarChart2, ShoppingBag, Menu } from "lucide-react";
+import { LayoutDashboard, Wrench, Menu } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SIDEBAR_ITEMS = [
   {
     name: "Dashboard",
-    icon: BarChart2,
+    icon: LayoutDashboard,
     color: "#6366f1",
     href: "/dashboard",
   },
   {
     name: "Inventory",
-    icon: ShoppingBag,
+    icon: Wrench,
     color: "#6EE7B7",
     href: "/inventory",
   },
