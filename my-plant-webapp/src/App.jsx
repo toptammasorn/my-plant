@@ -6,32 +6,33 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { auth } from "./firebase/config.js";
-
 // pages
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-
-// components
-import SideBar from "./components/SideBar";
+import InventoryPage from "./pages/InventoryPage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
 
-const App = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route>
-        <Route path="/" element={<RegisterPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<MainLayout />}>
-          <Route index element={<DashboardPage />} />
-        </Route>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      {/* No layout */}
+      <Route path="/" element={<RegisterPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* With MainLayout */}
+      <Route element={<MainLayout />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/inventory" element={<InventoryPage />} />
       </Route>
-    )
-  );
+    </>
+  )
+);
+
+const App = () => {
   return <RouterProvider router={router} />;
 };
 
