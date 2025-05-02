@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Route,
-  Routes,
-  BrowserRouter,
   createBrowserRouter,
   createRoutesFromElements, // Corrected the typo here
   RouterProvider,
