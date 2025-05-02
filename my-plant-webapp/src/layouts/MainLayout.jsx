@@ -1,6 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
+// import components
+import Sidebar from "../components/Sidebar";
+
 const MainLayout = () => {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
@@ -9,7 +12,7 @@ const MainLayout = () => {
         <div className="absolute inset-0 backdrop-blur-sm" />
       </div>
 
-      {/* <SideBar /> */}
+      <Sidebar />
       <Outlet />
     </div>
   );
