@@ -6,6 +6,9 @@ import { Thermometer, Droplet, Sun } from "lucide-react";
 import Header from "../components/common/Header";
 import Card from "../components/common/Card";
 
+// icons
+import tempcold from "../assets/icons/plant-factors/temp-cold.gif";
+
 const Dashboard = () => {
   return (
     <div className="flex-1 overflow-auto relative z-10">
@@ -21,9 +24,10 @@ const Dashboard = () => {
         >
           <Card
             name="Temperature (outside)"
-            icon={Thermometer}
+            // icon={Thermometer}
             value="31 °C"
             color="#6366F1"
+            gif={tempcold}
           />
           <Card
             name="Temperature (inside)"
