@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { auth, db } from "../firebase/config.js";
+import { doc, getDoc } from "firebase/firestore";
 import {
   LayoutDashboard,
   Box,
@@ -40,9 +42,33 @@ const SIDEBAR_ITEMS = [
 
 const Sidebar = () => {
   const [isSidbarOpen, setIsSidbarOpen] = useState(true);
+  const [userDetails, setUserDetails] = useState(null);
+
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth();
+
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        console.log("user: ", user);
+        const docRef = doc(db, "Users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUserDetails(docSnap.data());
+          console.log("Doc snap data: ", docSnap.data());
+        } else {
+          console.log("User document not found");
+        }
+      } else {
+        console.log("User is not logged in");
+        navigate("/login");
+      }
+    });
+  };
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -164,7 +190,9 @@ const Sidebar = () => {
                     exit={{ opacity: 0, width: 0 }}
                     transition={{ duration: 0.2, delay: 0.3 }}
                   >
-                    Profile
+                    <div>
+                      {userDetails !== null ? userDetails.firstname : "profile"}
+                    </div>
                   </motion.span>
                 )}
               </AnimatePresence>
