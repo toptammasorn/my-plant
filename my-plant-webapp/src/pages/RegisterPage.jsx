@@ -4,7 +4,7 @@ import { auth, db } from "../firebase/config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
-import Spinner from "../components/Spinner.jsx";
+import PacmanSpinner from "../components/PacmanSpinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
@@ -145,8 +145,8 @@ const RegisterPage = () => {
 
           {/* Sign up button */}
           <div className="mb-6">
-            <button type="submit" class="form-submitButton">
-              {loading ? <Spinner pacColor={"#91fb8e"} /> : "Sign up"}
+            <button type="submit" className="form-submitButton">
+              {loading ? <PacmanSpinner pacColor={"#91fb8e"} /> : "Sign up"}
             </button>
           </div>
         </div>

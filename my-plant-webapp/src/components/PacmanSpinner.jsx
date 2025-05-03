@@ -1,7 +1,7 @@
 import React from "react";
 import { PacmanLoader } from "react-spinners";
 
-const Spinner = ({ loading, pacColor }) => {
+const PacmanSpinner = ({ loading, pacColor }) => {
   return (
     <div className="flex justify-center items-center">
       <PacmanLoader color={pacColor} size={10} loading={loading} />
@@ -9,4 +9,4 @@ const Spinner = ({ loading, pacColor }) => {
   );
 };
 
-export default Spinner;
+export default PacmanSpinner;

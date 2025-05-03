@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/config.js";
-import Spinner from "../components/Spinner.jsx";
+import Spinner from "./PacmanSpinner.jsx";
 
 const SignInWithGoogle = () => {
   const [loading, setLoading] = useState(false);
