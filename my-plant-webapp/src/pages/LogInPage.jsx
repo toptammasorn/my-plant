@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
-import Spinner from "../components/Spinner.jsx";
+import PacmanSpinner from "../components/spinners/PacmanSpinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
@@ -110,7 +110,7 @@ const LoginPage = () => {
           {/* Sign in button */}
           <div className="mb-6">
             <button type="submit" class="form-submitButton">
-              {loading ? <Spinner pacColor={"#91fb8e"} /> : "Sign in"}
+              {loading ? <PacmanSpinner pacColor={"#91fb8e"} /> : "Sign in"}
             </button>
           </div>
         </div>
