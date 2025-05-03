@@ -7,9 +7,19 @@ import Header from "../components/common/Header";
 import Card from "../components/common/Card";
 
 // icons
-import tempcold from "../assets/icons/plant-factors/temp-cold.gif";
+import templow from "../assets/icons/plant-factors/temp-low.gif";
+import temphigh from "../assets/icons/plant-factors/temp-high.gif";
+import humidlow from "../assets/icons/plant-factors/humid-low.gif";
+import humidhigh from "../assets/icons/plant-factors/humid-high.gif";
+import lighton from "../assets/icons/plant-factors/light-on.gif";
+import lightoff from "../assets/icons/plant-factors/light-off.gif";
 
 const Dashboard = () => {
+  const temp_outside = 32;
+  const temp_inside = 29;
+  const humidity = 70;
+  const light = "OFF";
+
   return (
     <div className="flex-1 overflow-auto relative z-10">
       <Header title="Dashboard" />
@@ -24,19 +34,32 @@ const Dashboard = () => {
         >
           <Card
             name="Temperature (outside)"
+            gif={temp_outside >= 30 ? temphigh : templow}
             // icon={Thermometer}
-            value="31 °C"
-            color="#6366F1"
-            gif={tempcold}
+            value={temp_outside}
+            color={temp_outside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <Card
             name="Temperature (inside)"
+            gif={temp_inside >= 30 ? temphigh : templow}
             icon={Thermometer}
-            value="25 °C"
-            color="#6366F1"
+            value={temp_inside}
+            color={temp_inside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
-          <Card name="Humidity" icon={Droplet} value="70 %" color="#6366F1" />
-          <Card name="Light" icon={Sun} value="ON" color="#6366F1" />
+          <Card
+            name="Humidity"
+            gif={humidity < 70 ? humidlow : humidhigh}
+            icon={Droplet}
+            value={humidity}
+            color={humidity < 70 ? "text-orange-600" : "text-gray-100"}
+          />
+          <Card
+            name="Light"
+            gif={light == "OFF" ? lightoff : lighton}
+            icon={Sun}
+            value={light}
+            color="text-gray-100"
+          />
         </motion.div>
       </main>
     </div>
