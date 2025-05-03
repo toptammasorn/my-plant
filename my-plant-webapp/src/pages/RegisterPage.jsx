@@ -4,7 +4,7 @@ import { auth, db } from "../firebase/config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
-import PacmanSpinner from "../components/PacmanSpinner.jsx";
+import PacmanSpinner from "../components/spinners/PacmanSpinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 

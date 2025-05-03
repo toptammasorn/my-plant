@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
-import PacmanSpinner from "../components/PacmanSpinner.jsx";
+import PacmanSpinner from "../components/spinners/PacmanSpinner.jsx";
 
 import SignInWithGoogle from "../components/signInWithGoogle.jsx";
 
