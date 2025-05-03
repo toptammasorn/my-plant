@@ -20,36 +20,16 @@ export const CardParameter = ({ name, icon: Icon, value, color, gif }) => {
   );
 };
 
-export const CardProfile = ({ name, icon: Icon, value, color, gif }) => {
+export const CardProfile = ({ cardName, information }) => {
   return (
-    <motion.div
-      className="bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
-      whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
-    >
-      <div className="px-4 py-5 sm:p-6 space-y-2">
-        {/* First name */}
-        <div className="flex flex-wrap items-center text-sm font-medium">
-          <div className="text-white min-w-[100px]">First name:</div>
-          <div className="flex-1 text-gray-400 ml-2 bg-black rounded-md ">
-            <div className="p-1 ml-2">{name}</div>
-          </div>
-        </div>
-        {/* Last name */}
-        <div className="flex flex-wrap items-center text-sm font-medium">
-          <div className="text-white min-w-[100px]">First name:</div>
-          <div className="flex-1 text-gray-400 ml-2 bg-black rounded-md">
-            <div className="p-1 ml-2">{name}</div>
-          </div>
-        </div>
-        {/* Email */}
-        <div className="flex flex-wrap items-center text-sm font-medium">
-          <div className="text-white min-w-[100px]">First name:</div>
-          <div className="flex-1 text-gray-400 ml-2 bg-black rounded-md">
-            <div className="p-1 ml-2">{name}</div>
-          </div>
-        </div>
+    <div className="flex flex-wrap items-center text-sm font-medium">
+      {/* Profile topic */}
+      <div className="text-white min-w-[100px]">{`${cardName} :`}</div>
+      {/* Profile information */}
+      <div className="flex-1 text-gray-400 ml-2 bg-black rounded-md ">
+        <div className="p-1 ml-2">{`${information}`}</div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
