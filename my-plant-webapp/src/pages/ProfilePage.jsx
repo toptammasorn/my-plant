@@ -58,9 +58,15 @@ const ProfilePage = () => {
           >
             <div className="px-4 py-5 sm:p-6 space-y-2">
               {/* User information cards */}
-              <CardProfile cardName="First name" information="Tammsorn" />
-              <CardProfile cardName="Last name" information="Rojanaakrapong" />
-              <CardProfile cardName="Email" information="abc@gmail.com" />
+              <CardProfile
+                cardName="First name"
+                information={userDetails.firstname}
+              />
+              <CardProfile
+                cardName="Last name"
+                information={userDetails.lastname}
+              />
+              <CardProfile cardName="Email" information={userDetails.email} />
             </div>
           </motion.div>
           <CardPhoto className="w-[250px]" />
