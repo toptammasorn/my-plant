@@ -18,7 +18,7 @@ const Dashboard = () => {
   const temp_outside = 32;
   const temp_inside = 29;
   const humidity = 70;
-  const light = "OFF";
+  const light = "ON";
 
   return (
     <div className="flex-1 overflow-auto relative z-10">
