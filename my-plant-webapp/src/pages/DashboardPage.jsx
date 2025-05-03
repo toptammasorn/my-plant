@@ -4,7 +4,7 @@ import { Thermometer, Droplet, Sun } from "lucide-react";
 
 // components
 import Header from "../components/common/Header";
-import Card from "../components/common/Card";
+import { CardParameter } from "../components/common/Card";
 
 // icons
 import templow from "../assets/icons/plant-factors/temp-low.gif";
@@ -32,28 +32,28 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <Card
+          <CardParameter
             name="Temperature (outside)"
             gif={temp_outside >= 30 ? temphigh : templow}
             // icon={Thermometer}
             value={temp_outside}
             color={temp_outside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
-          <Card
+          <CardParameter
             name="Temperature (inside)"
             gif={temp_inside >= 30 ? temphigh : templow}
             icon={Thermometer}
             value={temp_inside}
             color={temp_inside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
-          <Card
+          <CardParameter
             name="Humidity"
             gif={humidity < 70 ? humidlow : humidhigh}
             icon={Droplet}
             value={humidity}
             color={humidity < 70 ? "text-orange-600" : "text-gray-100"}
           />
-          <Card
+          <CardParameter
             name="Light"
             gif={light == "OFF" ? lightoff : lighton}
             icon={Sun}
