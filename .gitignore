@@ -1,0 +1,34 @@
+# my-plant-webapp ignore rules
+my-plant-webapp/logs
+my-plant-webapp/*.log
+my-plant-webapp/npm-debug.log*
+my-plant-webapp/yarn-debug.log*
+my-plant-webapp/yarn-error.log*
+my-plant-webapp/pnpm-debug.log*
+my-plant-webapp/lerna-debug.log*
+
+my-plant-webapp/node_modules
+my-plant-webapp/dist
+my-plant-webapp/dist-ssr
+my-plant-webapp/*.local
+
+my-plant-webapp/.vscode/*
+!my-plant-webapp/.vscode/extensions.json
+my-plant-webapp/.idea
+my-plant-webapp/.DS_Store
+my-plant-webapp/*.suo
+my-plant-webapp/*.ntvs*
+my-plant-webapp/*.njsproj
+my-plant-webapp/*.sln
+my-plant-webapp/*.sw?
+
+my-plant-webapp/src/buffer/user.jsx
+
+# my-plant-firmware ignore rules
+my-plant-firmware/.pio
+my-plant-firmware/.vscode/.browse.c_cpp.db*
+my-plant-firmware/.vscode/c_cpp_properties.json
+my-plant-firmware/.vscode/launch.json
+my-plant-firmware/.vscode/ipch
+my-plant-firmware/.pio/libdebs/
+
