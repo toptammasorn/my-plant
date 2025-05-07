@@ -18,13 +18,15 @@ const firebaseConfig = {
   messagingSenderId: "466336020550",
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: "G-YF21TXEJTD",
+  databaseURL:
+    "https://my-plant-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
 const database = getDatabase(app);
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export default app;
+export { app, analytics, auth, db, database };

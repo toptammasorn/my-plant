@@ -13,6 +13,7 @@ import DashboardPage from "./pages/DashboardPage";
 import InventoryPage from "./pages/InventoryPage";
 import ProfilePage from "./pages/ProfilePage";
 import HardwarePage from "./pages/HardwarePage";
+import FetchDataPage from "./pages/FetchDataPage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<RegisterPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/fetch" element={<FetchDataPage />} />
 
       {/* With MainLayout */}
       <Route element={<MainLayout />}>

@@ -27,7 +27,7 @@ RealtimeDatabase Database;
 
 // Timer variables for sending data every 10 seconds
 unsigned long lastSendTime = 0;
-const unsigned long sendInterval = 10000; // 10 seconds in milliseconds
+const unsigned long sendInterval = 30000; // 10 seconds in milliseconds
 
 // Variables to send to the database
 int intValue = 0;
