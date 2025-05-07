@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Thermometer, Droplet, Sun } from "lucide-react";
 
+// firebase
+import { ref, onValue } from "firebase/database";
+import { database } from "../firebase/config";
+
 // components
 import Header from "../components/common/Header";
 import { CardParameter } from "../components/common/Card";
@@ -20,6 +24,32 @@ const Dashboard = () => {
   const humidity = 70;
   const light = "OFF";
 
+  // RTDB
+  const [intValue, setIntValue] = useState(null);
+  const [floatValue, setFloatValue] = useState(null);
+  const [stringValue, setStringValue] = useState("");
+
+  const intRef = ref(database, "test/int");
+  const floatRef = ref(database, "test/float");
+  const stringRef = ref(database, "test/string");
+
+  useEffect(() => {
+    onValue(intRef, (snapshot) => {
+      console.log("int:", snapshot.val());
+      setIntValue(snapshot.val());
+    });
+
+    onValue(floatRef, (snapshot) => {
+      console.log("float:", snapshot.val());
+      setFloatValue(snapshot.val());
+    });
+
+    onValue(stringRef, (snapshot) => {
+      console.log("string:", snapshot.val());
+      setStringValue(snapshot.val());
+    });
+  }, []);
+
   return (
     <div className="flex-1 overflow-auto relative z-10">
       <Header title="Dashboard" />
@@ -34,10 +64,10 @@ const Dashboard = () => {
         >
           <CardParameter
             name="Temperature (outside)"
-            gif={temp_outside >= 30 ? temphigh : templow}
+            gif={intValue >= 20 ? temphigh : templow}
             // icon={Thermometer}
-            value={temp_outside}
-            color={temp_outside >= 30 ? "text-orange-600" : "text-gray-100"}
+            value={intValue}
+            color={intValue >= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Temperature (inside)"
