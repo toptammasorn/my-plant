@@ -1,5 +1,5 @@
-#ifndef DS18B20_h
-#define DS18B20_h
+#ifndef DS18B20OUT_h
+#define DS18B20OUT_h
 
 #include <OneWire.h>
 #include <DallasTemperature.h>

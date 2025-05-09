@@ -1,4 +1,4 @@
-#include "DS18B20-out.h"
+#include "DS18B20out.h"
 
 // Temp sensors
 OneWire oneWire_1(ONE_WIRE_BUS_1);
