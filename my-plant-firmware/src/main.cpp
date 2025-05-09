@@ -27,9 +27,6 @@ unsigned long lastFirebaseSend = 0;
 const unsigned long sensorReadInterval = 2000;  // Read sensor every 2s
 const unsigned long firebaseSendInterval = 3000; // Send to Firebase every 3s
 
-float humidity = 0;
-float temperature = 0;
-
 // Firebase callback
 void processData(AsyncResult &aResult) {
   if (!aResult.isResult()) return;
@@ -77,11 +74,11 @@ void loop() {
     lastSensorRead = now;
 
     // DHT22
-    humidity = dht.readHumidity();
-    temperature = dht.readTemperature();
+    dht22Humid = dht.readHumidity();
+    dht22Temp = dht.readTemperature();
 
-    if (!isnan(humidity) && !isnan(temperature)) {
-      Serial.printf("🌡️ Temperature: %.2f °C\t💧 Humidity: %.2f %%\n", temperature, humidity);
+    if (!isnan(dht22Humid) && !isnan(dht22Temp)) {
+      Serial.printf("🌡️ Temperature: %.2f °C\t💧 Humidity: %.2f %%\n", dht22Temp, dht22Humid);
     } else {
       Serial.println("❌ Failed to read from DHT sensor!");
     }
@@ -90,7 +87,7 @@ void loop() {
   // Send to Firebase every 3 seconds (non-blocking)
   if (app.ready() && now - lastFirebaseSend >= firebaseSendInterval) {
     lastFirebaseSend = now;
-    Database.set<float>(aClient, "/sensors/dht22/humidity", humidity, processData, "RTDB_Send_Humidity");
-    Database.set<float>(aClient, "/sensors/dht22/temperature", temperature, processData, "RTDB_Send_Temperature");
+    Database.set<float>(aClient, "/sensors/dht22/humidity", dht22Humid, processData, "RTDB_Send_Humidity");
+    Database.set<float>(aClient, "/sensors/dht22/temperature", dht22Temp, processData, "RTDB_Send_Temperature");
   }
 }

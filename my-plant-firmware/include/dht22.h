@@ -10,4 +10,7 @@
 // DHT sensor
 extern DHT dht;
 
+extern float dht22Humid;
+extern float dht22Temp;
+
 #endif
