@@ -109,12 +109,13 @@ const Dashboard = () => {
             value={temp_inside}
             color={temp_inside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
+          {/* DHT22 */}
           <CardParameter
             name="Temperature (inside) - DHT22"
-            gif={humidity < 70 ? humidlow : humidhigh}
+            gif={dht22Temp >= 30 ? temphigh : templow}
             icon={Droplet}
-            value={humidity}
-            color={humidity < 70 ? "text-orange-600" : "text-gray-100"}
+            value={dht22Temp}
+            color={dht22Temp >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Humidity - DHT22"
