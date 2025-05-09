@@ -29,9 +29,23 @@ const Dashboard = () => {
   const [floatValue, setFloatValue] = useState(null);
   const [stringValue, setStringValue] = useState("");
 
+  const [dht22Temp, setDht22Temp] = useState(0);
+  const [dht22Humidity, setDht22Humidity] = useState(0);
+  const [dsTemp1, setDsTemp1] = useState(0);
+  const [dsTemp2, setDsTemp2] = useState(0);
+  const [lux, setLux] = useState(0);
+  const [waterLevel, setWaterLevel] = useState(0);
+
   const intRef = ref(database, "test/int");
   const floatRef = ref(database, "test/float");
   const stringRef = ref(database, "test/string");
+
+  const dht22TempRef = ref(database, "sensors/dht22Temp");
+  const dht22HumidityRef = ref(database, "sensors/dht22Humidity");
+  const dsTemp1Ref = ref(database, "sensors/dsTemp1");
+  const dsTemp2Ref = ref(database, "sensors/dsTemp2");
+  const luxRef = ref(database, "sensors/lux");
+  const waterLevelRef = ref(database, "sensors/waterLevel");
 
   useEffect(() => {
     onValue(intRef, (snapshot) => {
@@ -64,10 +78,10 @@ const Dashboard = () => {
         >
           <CardParameter
             name="Temperature (outside)"
-            gif={intValue >= 20 ? temphigh : templow}
+            gif={dht22Temp >= 20 ? temphigh : templow}
             // icon={Thermometer}
-            value={intValue}
-            color={intValue >= 20 ? "text-orange-600" : "text-gray-100"}
+            value={dht22Temp}
+            color={dht22Temp >= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Temperature (inside)"

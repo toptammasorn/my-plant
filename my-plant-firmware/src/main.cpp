@@ -21,17 +21,11 @@ using AsyncClient = AsyncClientClass;
 AsyncClient aClient(ssl_client);
 RealtimeDatabase Database;
 
-<<<<<<< HEAD
-// Timer variables for sending data every 10 seconds
-unsigned long lastSendTime = 0;
-const unsigned long sendInterval = 5000; // 10 seconds in milliseconds
-=======
 // Non-blocking timers
 unsigned long lastSensorRead = 0;
 unsigned long lastFirebaseSend = 0;
 const unsigned long sensorReadInterval = 2000;  // Read sensor every 2s
 const unsigned long firebaseSendInterval = 3000; // Send to Firebase every 3s
->>>>>>> dev-firmware
 
 float humidity = 0;
 float temperature = 0;
