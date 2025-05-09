@@ -4,13 +4,8 @@
 
 #include <Wire.h>
 #include <BH1750.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
 
 extern BH1750 lightMeter;
-
-extern OneWire oneWire_3;
-extern DallasTemperature BH;
 
 extern float BHLux;
 

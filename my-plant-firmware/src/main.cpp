@@ -31,8 +31,6 @@ unsigned long lastFirebaseSend = 0;
 const unsigned long sensorReadInterval = 2000;  // Read sensor every 2s
 const unsigned long firebaseSendInterval = 3000; // Send to Firebase every 3s
 
-BH1750 lightMeter;
-
 // Firebase callback
 void processData(AsyncResult &aResult) {
   if (!aResult.isResult()) return;
