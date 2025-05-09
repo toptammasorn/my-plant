@@ -3,6 +3,9 @@
 #include <WiFiClientSecure.h>
 #include <FirebaseClient.h>
 
+#include "DHT.h"
+#include "dht22.h"
+
 // Network and Firebase credentials
 #define WIFI_SSID "Laptop"
 #define WIFI_PASSWORD "12345678"
@@ -55,6 +58,10 @@ void setup(){
   initializeApp(aClient, app, getAuth(user_auth), processData, "🔐 authTask");
   app.getApp<RealtimeDatabase>(Database);
   Database.url(DATABASE_URL);
+
+  // sensors
+  // dht22
+  dht.begin();
 }
 
 void loop(){
@@ -78,8 +85,25 @@ void loop(){
       // send a string
       floatValue = 0.01 + random (0,100);
       Database.set<float>(aClient, "/test/float", floatValue, processData, "RTDB_Send_Float");
-    }ไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไไ
+    }
   }
+
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("❌ Failed to read from DHT sensor!");
+    return;
+  }
+
+  Serial.print("🌡️ Temperature: ");
+  Serial.print(temperature);
+  Serial.print(" °C\t");
+  Serial.print("💧 Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  delay(2000); // Wait 2 seconds between readings
 }
 
 void processData(AsyncResult &aResult) {
