@@ -52,7 +52,7 @@ const Dashboard = () => {
   // DS18B20-in
   const dsTemp2Ref = ref(database, "sensors/ds18b20-in/temperature");
   // BH1750
-  const luxRef = ref(database, "sensors/lux");
+  const luxRef = ref(database, "sensors/bh1750/lux");
   // XKC-Y25-V
   const waterLevelRef = ref(database, "sensors/waterLevel");
 
@@ -81,6 +81,12 @@ const Dashboard = () => {
     onValue(dht22HumidRef, (snapshot) => {
       console.log("dht22Humid:", snapshot.val());
       setDht22Humid(snapshot.val());
+    });
+
+    // BH1750
+    onValue(luxRef, (snapshot) => {
+      console.log("lux:", snapshot.val());
+      setLux(snapshot.val());
     });
   }, []);
 
@@ -132,10 +138,10 @@ const Dashboard = () => {
           <CardParameter
             name="Lux"
             device="BH1750"
-            gif={light == "OFF" ? lightoff : lighton}
+            gif={lux <= 20 ? lighton : lightoff}
             icon={Sun}
-            value={light}
-            color="text-gray-100"
+            value={lux}
+            color={lux <= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Water level"
