@@ -50,9 +50,9 @@ const Dashboard = () => {
   // DS18B20
   const dsTemp1Ref = ref(database, "sensors/dsTemp1");
   const dsTemp2Ref = ref(database, "sensors/dsTemp2");
-  // LUX sensor
+  // BH1750
   const luxRef = ref(database, "sensors/lux");
-  // Water level sensor
+  // XKC-Y25-V
   const waterLevelRef = ref(database, "sensors/waterLevel");
 
   useEffect(() => {
@@ -96,14 +96,14 @@ const Dashboard = () => {
           transition={{ duration: 1 }}
         >
           <CardParameter
-            name="Temperature (outside)"
+            name="Temperature (outside) - DS18B20"
             gif={dht22Temp >= 20 ? temphigh : templow}
             // icon={Thermometer}
             value={dht22Temp}
             color={dht22Temp >= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Temperature (inside)"
+            name="Temperature (inside) - DS18B20"
             gif={temp_inside >= 30 ? temphigh : templow}
             icon={Thermometer}
             value={temp_inside}
@@ -125,7 +125,14 @@ const Dashboard = () => {
             color={dht22Humid < 70 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Light"
+            name="Lux - BH1750"
+            gif={light == "OFF" ? lightoff : lighton}
+            icon={Sun}
+            value={light}
+            color="text-gray-100"
+          />
+          <CardParameter
+            name="Water level - XKC-Y25-V"
             gif={light == "OFF" ? lightoff : lighton}
             icon={Sun}
             value={light}
