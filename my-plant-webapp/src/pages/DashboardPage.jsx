@@ -96,14 +96,16 @@ const Dashboard = () => {
           transition={{ duration: 1 }}
         >
           <CardParameter
-            name="Temperature (outside) - DS18B20"
+            name="Temperature (outside)"
             gif={dht22Temp >= 20 ? temphigh : templow}
-            // icon={Thermometer}
+            device="DS18B20"
+            icon={Thermometer}
             value={dht22Temp}
             color={dht22Temp >= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Temperature (inside) - DS18B20"
+            name="Temperature (inside)"
+            device="DS18B20"
             gif={temp_inside >= 30 ? temphigh : templow}
             icon={Thermometer}
             value={temp_inside}
@@ -111,28 +113,32 @@ const Dashboard = () => {
           />
           {/* DHT22 */}
           <CardParameter
-            name="Temperature (inside) - DHT22"
+            name="Temperature (inside)"
+            device="DHT22"
             gif={dht22Temp >= 30 ? temphigh : templow}
             icon={Droplet}
             value={dht22Temp}
             color={dht22Temp >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Humidity - DHT22"
+            name="Humidity"
+            device="DHT22"
             gif={dht22Humid < 70 ? humidlow : humidhigh}
             icon={Droplet}
             value={dht22Humid}
             color={dht22Humid < 70 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Lux - BH1750"
+            name="Lux"
+            device="BH1750"
             gif={light == "OFF" ? lightoff : lighton}
             icon={Sun}
             value={light}
             color="text-gray-100"
           />
           <CardParameter
-            name="Water level - XKC-Y25-V"
+            name="Water level"
+            device="XKCY25V"
             gif={light == "OFF" ? lightoff : lighton}
             icon={Sun}
             value={light}

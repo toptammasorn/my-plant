@@ -1,7 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export const CardParameter = ({ name, icon: Icon, value, color, gif }) => {
+export const CardParameter = ({
+  name,
+  device,
+  icon: Icon,
+  value,
+  color,
+  gif,
+}) => {
   return (
     <motion.div
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
@@ -11,6 +18,9 @@ export const CardParameter = ({ name, icon: Icon, value, color, gif }) => {
         <span className="flex items-center text-sm font-medium text-gray-400">
           <img src={gif} alt="icon" className="w-6 h-6 mr-2" />
           {name}
+        </span>
+        <span className="flex items-center text-sm font-medium text-gray-400">
+          <div className="w-6 h-6 mr-2 mt-1">{device}</div>
         </span>
         <p className={`mt-1 text-3xl font-semibold text-gray-100 ${color}`}>
           {value}
