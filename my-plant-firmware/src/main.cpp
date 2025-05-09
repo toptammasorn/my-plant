@@ -90,7 +90,7 @@ void loop() {
   // Send to Firebase every 3 seconds (non-blocking)
   if (app.ready() && now - lastFirebaseSend >= firebaseSendInterval) {
     lastFirebaseSend = now;
-    Database.set<float>(aClient, "/test/humidity", humidity, processData, "RTDB_Send_Humidity");
-    Database.set<float>(aClient, "/test/temperature", temperature, processData, "RTDB_Send_Temperature");
+    Database.set<float>(aClient, "/sensors/dht22/humidity", humidity, processData, "RTDB_Send_Humidity");
+    Database.set<float>(aClient, "/sensors/dht22/temperature", temperature, processData, "RTDB_Send_Temperature");
   }
 }
