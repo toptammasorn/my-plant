@@ -75,12 +75,12 @@ void loop() {
   // Read sensor every 2 seconds (non-blocking)
   if (now - lastSensorRead >= sensorReadInterval) {
     lastSensorRead = now;
-    float h = dht.readHumidity();
-    float t = dht.readTemperature();
 
-    if (!isnan(h) && !isnan(t)) {
-      humidity = h;
-      temperature = t;
+    // DHT22
+    humidity = dht.readHumidity();
+    temperature = dht.readTemperature();
+
+    if (!isnan(humidity) && !isnan(temperature)) {
       Serial.printf("🌡️ Temperature: %.2f °C\t💧 Humidity: %.2f %%\n", temperature, humidity);
     } else {
       Serial.println("❌ Failed to read from DHT sensor!");
