@@ -29,24 +29,58 @@ const Dashboard = () => {
   const [floatValue, setFloatValue] = useState(null);
   const [stringValue, setStringValue] = useState("");
 
+  // DHT22
+  const [dht22Temp, setDht22Temp] = useState(0);
+  const [dht22Humid, setDht22Humid] = useState(0);
+  // DS18B20
+  const [ds1Temp, setDs1Temp] = useState(0);
+  const [ds2Temp, setDs2Temp] = useState(0);
+  // LUX sensor
+  const [lux, setLux] = useState(0);
+  // Water level sensor
+  const [waterLevel, setWaterLevel] = useState(0);
+
   const intRef = ref(database, "test/int");
   const floatRef = ref(database, "test/float");
   const stringRef = ref(database, "test/string");
 
+  // DHT22
+  const dht22TempRef = ref(database, "sensors/dht22/temperature");
+  const dht22HumidRef = ref(database, "sensors/dht22/humidity");
+  // DS18B20-out
+  const dsTemp1Ref = ref(database, "sensors/ds18b20-out/temperature");
+  // DS18B20-in
+  const dsTemp2Ref = ref(database, "sensors/ds18b20-in/temperature");
+  // BH1750
+  const luxRef = ref(database, "sensors/lux");
+  // XKC-Y25-V
+  const waterLevelRef = ref(database, "sensors/waterLevel");
+
   useEffect(() => {
-    onValue(intRef, (snapshot) => {
-      console.log("int:", snapshot.val());
-      setIntValue(snapshot.val());
+    onValue(dsTemp1Ref, (snapshot) => {
+      console.log("ds1Temp:", snapshot.val());
+      setDs1Temp(snapshot.val());
     });
 
-    onValue(floatRef, (snapshot) => {
-      console.log("float:", snapshot.val());
-      setFloatValue(snapshot.val());
+    onValue(dsTemp2Ref, (snapshot) => {
+      console.log("ds2Temp:", snapshot.val());
+      setDs2Temp(snapshot.val());
     });
 
     onValue(stringRef, (snapshot) => {
       console.log("string:", snapshot.val());
       setStringValue(snapshot.val());
+    });
+
+    // DHT22
+    onValue(dht22TempRef, (snapshot) => {
+      console.log("dht22Temp:", snapshot.val());
+      setDht22Temp(snapshot.val());
+    });
+
+    onValue(dht22HumidRef, (snapshot) => {
+      console.log("dht22Humid:", snapshot.val());
+      setDht22Humid(snapshot.val());
     });
   }, []);
 
@@ -64,27 +98,48 @@ const Dashboard = () => {
         >
           <CardParameter
             name="Temperature (outside)"
-            gif={intValue >= 20 ? temphigh : templow}
-            // icon={Thermometer}
-            value={intValue}
-            color={intValue >= 20 ? "text-orange-600" : "text-gray-100"}
+            gif={ds1Temp >= 30 ? temphigh : templow}
+            device="DS18B20"
+            icon={Thermometer}
+            value={ds1Temp}
+            color={ds1Temp >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Temperature (inside)"
-            gif={temp_inside >= 30 ? temphigh : templow}
+            device="DS18B20"
+            gif={ds2Temp >= 30 ? temphigh : templow}
             icon={Thermometer}
-            value={temp_inside}
-            color={temp_inside >= 30 ? "text-orange-600" : "text-gray-100"}
+            value={ds2Temp}
+            color={ds2Temp >= 30 ? "text-orange-600" : "text-gray-100"}
+          />
+          {/* DHT22 */}
+          <CardParameter
+            name="Temperature (inside)"
+            device="DHT22"
+            gif={dht22Temp >= 30 ? temphigh : templow}
+            icon={Droplet}
+            value={dht22Temp}
+            color={dht22Temp >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Humidity"
-            gif={humidity < 70 ? humidlow : humidhigh}
+            device="DHT22"
+            gif={dht22Humid < 70 ? humidlow : humidhigh}
             icon={Droplet}
-            value={humidity}
-            color={humidity < 70 ? "text-orange-600" : "text-gray-100"}
+            value={dht22Humid}
+            color={dht22Humid < 70 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Light"
+            name="Lux"
+            device="BH1750"
+            gif={light == "OFF" ? lightoff : lighton}
+            icon={Sun}
+            value={light}
+            color="text-gray-100"
+          />
+          <CardParameter
+            name="Water level"
+            device="XKCY25V"
             gif={light == "OFF" ? lightoff : lighton}
             icon={Sun}
             value={light}
