@@ -3,7 +3,9 @@
 #include <WiFiClientSecure.h>
 #include <FirebaseClient.h>
 #include "DHT.h"
+
 #include "dht22.h"
+#include "DS18B20-out.h"
 
 // Wi-Fi and Firebase credentials
 #define WIFI_SSID "Laptop"
@@ -62,6 +64,9 @@ void setup() {
 
   // DHT sensor
   dht.begin();
+
+  // DS18B20 sensors
+  DS1.begin();
 }
 
 void loop() {
@@ -78,15 +83,29 @@ void loop() {
     dht22Temp = dht.readTemperature();
 
     if (!isnan(dht22Humid) && !isnan(dht22Temp)) {
-      Serial.printf("🌡️ Temperature: %.2f °C\t💧 Humidity: %.2f %%\n", dht22Temp, dht22Humid);
+      Serial.printf("[DHT22] 🌡️ Temperature: %.2f °C\t💧 Humidity: %.2f %%\n", dht22Temp, dht22Humid);
     } else {
       Serial.println("❌ Failed to read from DHT sensor!");
+    }
+
+    // DS18B20
+    DS1.requestTemperatures();
+    DS1Temp = DS1.getTempCByIndex(0);
+    if (!isnan(DS1Temp)) {
+      Serial.printf("🌡️ [DS1] Temperature: %.2f °C\t💧\n", DS1Temp);
+    } else {
+      Serial.println("❌ Failed to read from DS sensor!");
     }
   }
 
   // Send to Firebase every 3 seconds (non-blocking)
   if (app.ready() && now - lastFirebaseSend >= firebaseSendInterval) {
     lastFirebaseSend = now;
+    
+    // DS18B20 - 1
+    Database.set<float>(aClient, "/sensors/ds18b20-1/temperature", DS1Temp, processData, "RTDB_Send_DS1_Temperature");
+    
+    // DHT22
     Database.set<float>(aClient, "/sensors/dht22/humidity", dht22Humid, processData, "RTDB_Send_Humidity");
     Database.set<float>(aClient, "/sensors/dht22/temperature", dht22Temp, processData, "RTDB_Send_Temperature");
   }
