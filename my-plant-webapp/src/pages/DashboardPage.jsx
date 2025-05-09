@@ -40,8 +40,8 @@ const Dashboard = () => {
   const floatRef = ref(database, "test/float");
   const stringRef = ref(database, "test/string");
 
-  const dht22TempRef = ref(database, "sensors/dht22Temp");
-  const dht22HumidityRef = ref(database, "sensors/dht22Humidity");
+  const dht22TempRef = ref(database, "sensors/dht22/temperature");
+  const dht22HumidityRef = ref(database, "sensors/dht22/humidity");
   const dsTemp1Ref = ref(database, "sensors/dsTemp1");
   const dsTemp2Ref = ref(database, "sensors/dsTemp2");
   const luxRef = ref(database, "sensors/lux");
