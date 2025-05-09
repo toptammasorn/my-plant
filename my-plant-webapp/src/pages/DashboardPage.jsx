@@ -29,22 +29,30 @@ const Dashboard = () => {
   const [floatValue, setFloatValue] = useState(null);
   const [stringValue, setStringValue] = useState("");
 
+  // DHT22
   const [dht22Temp, setDht22Temp] = useState(0);
-  const [dht22Humidity, setDht22Humidity] = useState(0);
+  const [dht22Humid, setDht22Humid] = useState(0);
+  // DS18B20
   const [dsTemp1, setDsTemp1] = useState(0);
   const [dsTemp2, setDsTemp2] = useState(0);
+  // LUX sensor
   const [lux, setLux] = useState(0);
+  // Water level sensor
   const [waterLevel, setWaterLevel] = useState(0);
 
   const intRef = ref(database, "test/int");
   const floatRef = ref(database, "test/float");
   const stringRef = ref(database, "test/string");
 
+  // DHT22
   const dht22TempRef = ref(database, "sensors/dht22/temperature");
-  const dht22HumidityRef = ref(database, "sensors/dht22/humidity");
+  const dht22HumidRef = ref(database, "sensors/dht22/humidity");
+  // DS18B20
   const dsTemp1Ref = ref(database, "sensors/dsTemp1");
   const dsTemp2Ref = ref(database, "sensors/dsTemp2");
+  // LUX sensor
   const luxRef = ref(database, "sensors/lux");
+  // Water level sensor
   const waterLevelRef = ref(database, "sensors/waterLevel");
 
   useEffect(() => {
@@ -61,6 +69,17 @@ const Dashboard = () => {
     onValue(stringRef, (snapshot) => {
       console.log("string:", snapshot.val());
       setStringValue(snapshot.val());
+    });
+
+    // DHT22
+    onValue(dht22TempRef, (snapshot) => {
+      console.log("dht22Temp:", snapshot.val());
+      setDht22Temp(snapshot.val());
+    });
+
+    onValue(dht22HumidRef, (snapshot) => {
+      console.log("dht22Humid:", snapshot.val());
+      setDht22Humid(snapshot.val());
     });
   }, []);
 
@@ -91,11 +110,18 @@ const Dashboard = () => {
             color={temp_inside >= 30 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Humidity"
+            name="Temperature (inside) - DHT22"
             gif={humidity < 70 ? humidlow : humidhigh}
             icon={Droplet}
             value={humidity}
             color={humidity < 70 ? "text-orange-600" : "text-gray-100"}
+          />
+          <CardParameter
+            name="Humidity - DHT22"
+            gif={dht22Humid < 70 ? humidlow : humidhigh}
+            icon={Droplet}
+            value={dht22Humid}
+            color={dht22Humid < 70 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
             name="Light"
