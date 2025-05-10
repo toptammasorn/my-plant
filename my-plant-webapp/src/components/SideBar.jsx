@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { auth, db } from "../firebase/config.js";
+import { db } from "../firebase/config.js";
 import { doc, getDoc } from "firebase/firestore";
 import {
-  LayoutDashboard,
+  Gauge,
   Box,
   Wrench,
   LogOut,
@@ -17,7 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 const SIDEBAR_ITEMS = [
   {
     name: "Dashboard",
-    icon: LayoutDashboard,
+    icon: Gauge,
     color: "#6EE7B7",
     href: "/dashboard",
   },
