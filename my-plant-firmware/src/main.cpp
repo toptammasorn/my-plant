@@ -150,5 +150,8 @@ void loop() {
   
     // BH1750
     Database.set<float>(aClient, "/sensors/bh1750/lux", BHLux, processData, "RTDB_Send_Lux");
+
+    // XKC-Y25-V
+    Database.set<int>(aClient, "/sensors/xkc-y25v/water_level", water_level, processData, "RTDB_Send_Water_Level");
   }
 }
