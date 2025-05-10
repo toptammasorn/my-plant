@@ -97,7 +97,7 @@ const ProfilePage = () => {
             )}
           </motion.div>
 
-          <CardPhoto className="w-[250px] bg-white/10" />
+          <CardPhoto />
         </motion.div>
       </main>
     </div>

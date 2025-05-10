@@ -43,10 +43,10 @@ export const CardProfile = ({ cardName, information }) => {
   );
 };
 
-export const CardPhoto = ({ className = "" }) => {
+export const CardPhoto = () => {
   return (
     <motion.div
-      className={`bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700 ${className}`}
+      className="w-[250px] bg-transparent"
       whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
     >
       <img
