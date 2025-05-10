@@ -119,7 +119,7 @@ const Sidebar = () => {
                   onClick={handleLogout}
                   className="w-full text-left"
                 >
-                  <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2 gap-5">
+                  <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-red-700 transition-colors mb-2 gap-5">
                     <item.icon
                       size={20}
                       style={{ color: item.color, minWidth: "20px" }}
