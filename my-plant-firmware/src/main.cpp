@@ -7,6 +7,7 @@
 #include "dht22.h"
 #include "DS18B20out.h"
 #include "DS18B20in.h"
+#include <BH1750sensor.h>
 
 // Wi-Fi and Firebase credentials
 #define WIFI_SSID "Laptop"
@@ -69,6 +70,10 @@ void setup() {
   // DS18B20 sensors
   DS1.begin();
   DS2.begin();
+
+  // BH1750 sensor
+  Wire.begin();
+  lightMeter.begin();
 }
 
 void loop() {
@@ -107,6 +112,16 @@ void loop() {
     } else {
       Serial.println("❌ Failed to read from DS sensor!");
     }
+
+    // BH1750
+    BHLux = lightMeter.readLightLevel();
+    if (BHLux >= 100) {
+      Serial.printf("💡 [BH1750] Light Level is high: %.2f lx\n", BHLux);
+    } else if (BHLux < 100) {
+      Serial.printf("💡 [BH1750] Light Level is low: %.2f lx\n", BHLux);
+    } else {
+      Serial.println("❌ Failed to read from BH1750 sensor!");
+    }
   }
 
   // Send to Firebase every 3 seconds (non-blocking)
@@ -122,5 +137,8 @@ void loop() {
     // DHT22
     Database.set<float>(aClient, "/sensors/dht22/humidity", dht22Humid, processData, "RTDB_Send_Humidity");
     Database.set<float>(aClient, "/sensors/dht22/temperature", dht22Temp, processData, "RTDB_Send_Temperature");
+  
+    // BH1750
+    Database.set<float>(aClient, "/sensors/bh1750/lux", BHLux, processData, "RTDB_Send_Lux");
   }
 }
