@@ -19,15 +19,7 @@ import lighton from "../assets/icons/plant-factors/light-on.gif";
 import lightoff from "../assets/icons/plant-factors/light-off.gif";
 
 const Dashboard = () => {
-  const temp_outside = 32;
-  const temp_inside = 29;
-  const humidity = 70;
   const light = "OFF";
-
-  // RTDB
-  const [intValue, setIntValue] = useState(null);
-  const [floatValue, setFloatValue] = useState(null);
-  const [stringValue, setStringValue] = useState("");
 
   // DHT22
   const [dht22Temp, setDht22Temp] = useState(0);
@@ -40,8 +32,6 @@ const Dashboard = () => {
   // Water level sensor
   const [waterLevel, setWaterLevel] = useState(0);
 
-  const intRef = ref(database, "test/int");
-  const floatRef = ref(database, "test/float");
   const stringRef = ref(database, "test/string");
 
   // DHT22
@@ -67,11 +57,6 @@ const Dashboard = () => {
       setDs2Temp(snapshot.val());
     });
 
-    onValue(stringRef, (snapshot) => {
-      console.log("string:", snapshot.val());
-      setStringValue(snapshot.val());
-    });
-
     // DHT22
     onValue(dht22TempRef, (snapshot) => {
       console.log("dht22Temp:", snapshot.val());
@@ -87,6 +72,12 @@ const Dashboard = () => {
     onValue(luxRef, (snapshot) => {
       console.log("lux:", snapshot.val());
       setLux(snapshot.val());
+    });
+
+    // XKC-Y25-V
+    onValue(stringRef, (snapshot) => {
+      console.log("string:", snapshot.val());
+      setStringValue(snapshot.val());
     });
   }, []);
 
