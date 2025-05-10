@@ -99,7 +99,7 @@ const Sidebar = () => {
         }`}
         animate={{ width: isSidbarOpen ? 256 : 80 }}
       >
-        <div className="h-full bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
+        <div className="h-full bg-green-300/40 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
           {/* Sidebar toggle button */}
           <motion.button
             whileHover={{ scale: 1.1 }}
