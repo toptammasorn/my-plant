@@ -130,7 +130,7 @@ void loop() {
     // XKC-Y25-V
     water_level = digitalRead(4);
     Serial.print("XKC-Y25-V: ");
-    Serial.println(digitalRead(4));
+    Serial.println(water_level);
     Serial.printf("💧 Water level: %s\n", water_level == 0 ? "❌ Not Detected" : "💦 Detected");
   }
 
