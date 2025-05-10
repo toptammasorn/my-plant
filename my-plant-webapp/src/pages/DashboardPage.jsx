@@ -32,7 +32,7 @@ const Dashboard = () => {
   // LUX sensor
   const [lux, setLux] = useState(0);
   // Water level sensor
-  const [waterLevel, setWaterLevel] = useState(1);
+  const [waterLevel, setWaterLevel] = useState(0);
 
   const stringRef = ref(database, "test/string");
 
@@ -139,10 +139,10 @@ const Dashboard = () => {
           <CardParameter
             name="Full tank of water"
             device="XKCY25V"
-            gif={waterLevel == 1 ? waterlow : waterhigh}
+            gif={waterLevel == 1 ? waterhigh : waterlow}
             icon={Sun}
-            value={waterLevel == 1 ? 1 : 0}
-            color={waterLevel == 1 ? "text-orange-600" : "text-gray-100"}
+            value={waterLevel}
+            color={waterLevel == 1 ? "text-gray-100" : "text-orange-600"}
           />
         </motion.div>
       </main>
