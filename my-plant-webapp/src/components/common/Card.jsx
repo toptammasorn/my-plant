@@ -15,10 +15,10 @@ export const CardParameter = ({
       whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)" }}
     >
       <div className="px-4 py-5 sm:p-6">
-        <span className="flex items-center text-sm font-medium text-gray-400">
-          <img src={gif} alt="icon" className="w-6 h-6 mr-2" />
-          {name}
+        <span className="flex items-center justify-center text-sm font-medium text-gray-400">
+          <img src={gif} alt="icon" className="w-20 h-20 m-2 mb-5" />
         </span>
+        <span>{name}</span>
         <span className="flex items-center text-sm font-medium text-gray-400">
           <div className="w-6 h-6 mr-2 mt-1">{device}</div>
         </span>
