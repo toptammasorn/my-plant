@@ -131,7 +131,7 @@ const Dashboard = () => {
           <CardParameter
             name="Lux"
             device="BH1750"
-            gif={lux <= 20 ? lighton : lightoff}
+            gif={lux <= 20 ? lightoff : lighton}
             icon={Sun}
             value={lux}
             color={lux <= 20 ? "text-orange-600" : "text-gray-100"}
