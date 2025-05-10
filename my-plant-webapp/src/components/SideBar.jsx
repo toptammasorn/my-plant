@@ -40,7 +40,7 @@ const SIDEBAR_ITEMS = [
   },
 ];
 
-const Sidebar = () => {
+const SideBar = () => {
   const [isSidbarOpen, setIsSidbarOpen] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
 
@@ -204,4 +204,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

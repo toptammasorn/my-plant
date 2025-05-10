@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 // import components
-import Sidebar from "../components/Sidebar";
+import SideBar from "../components/SideBar";
 
 const MainLayout = () => {
   return (
@@ -13,11 +13,11 @@ const MainLayout = () => {
       }}
     >
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-" />
         <div className="absolute inset-0 backdrop-blur-sm" />
       </div>
 
-      <Sidebar />
+      <SideBar />
       <Outlet />
     </div>
   );
