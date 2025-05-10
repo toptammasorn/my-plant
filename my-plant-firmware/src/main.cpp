@@ -131,7 +131,7 @@ void loop() {
     water_level = digitalRead(4);
     Serial.print("XKC-Y25-V: ");
     Serial.println(digitalRead(4));
-    Serial.printf("💧 Water level: %s\n", water_level == 0 ? "💦 Detected" : "❌ Not Detected");
+    Serial.printf("💧 Water level: %s\n", water_level == 0 ? "❌ Not Detected" : "💦 Detected");
   }
 
   // Send to Firebase every 3 seconds (non-blocking)

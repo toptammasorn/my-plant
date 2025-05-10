@@ -17,6 +17,8 @@ import humidlow from "../assets/icons/plant-factors/humid-low.gif";
 import humidhigh from "../assets/icons/plant-factors/humid-high.gif";
 import lighton from "../assets/icons/plant-factors/light-on.gif";
 import lightoff from "../assets/icons/plant-factors/light-off.gif";
+import waterlow from "../assets/icons/plant-factors/water-low.gif";
+import waterhigh from "../assets/icons/plant-factors/water-high.gif";
 
 const Dashboard = () => {
   const light = "OFF";
@@ -30,7 +32,7 @@ const Dashboard = () => {
   // LUX sensor
   const [lux, setLux] = useState(0);
   // Water level sensor
-  const [waterLevel, setWaterLevel] = useState(0);
+  const [waterLevel, setWaterLevel] = useState(1);
 
   const stringRef = ref(database, "test/string");
 
@@ -44,7 +46,7 @@ const Dashboard = () => {
   // BH1750
   const luxRef = ref(database, "sensors/bh1750/lux");
   // XKC-Y25-V
-  const waterLevelRef = ref(database, "sensors/waterLevel");
+  const waterLevelRef = ref(database, "sensors/xkc-y25v/water_level");
 
   useEffect(() => {
     onValue(dsTemp1Ref, (snapshot) => {
@@ -75,9 +77,9 @@ const Dashboard = () => {
     });
 
     // XKC-Y25-V
-    onValue(stringRef, (snapshot) => {
-      console.log("string:", snapshot.val());
-      setStringValue(snapshot.val());
+    onValue(waterLevelRef, (snapshot) => {
+      console.log("waterLevel:", snapshot.val());
+      setWaterLevel(snapshot.val());
     });
   }, []);
 
@@ -135,12 +137,12 @@ const Dashboard = () => {
             color={lux <= 20 ? "text-orange-600" : "text-gray-100"}
           />
           <CardParameter
-            name="Water level"
+            name="Full tank of water"
             device="XKCY25V"
-            gif={light == "OFF" ? lightoff : lighton}
+            gif={waterLevel == 1 ? waterlow : waterhigh}
             icon={Sun}
-            value={light}
-            color="text-gray-100"
+            value={waterLevel == 1 ? 1 : 0}
+            color={waterLevel == 1 ? "text-orange-600" : "text-gray-100"}
           />
         </motion.div>
       </main>
