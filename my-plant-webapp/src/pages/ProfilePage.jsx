@@ -67,6 +67,7 @@ const ProfilePage = () => {
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
             }}
           >
+            <div className="p-5 pb-0 text-2xl">Information</div>
             {loading ? (
               <PacmanSpinner
                 name="profile"
