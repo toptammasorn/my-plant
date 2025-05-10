@@ -15,7 +15,7 @@
 #define WIFI_PASSWORD "12345678"
 #define Web_API_KEY "AIzaSyCkIxhR6DGcRtrvAyGj6oK9F-rnaEKaU9Y"
 #define DATABASE_URL "https://my-plant-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/"
-#define USER_EMAIL "tammasorn.game@gmail.com"
+#define USER_EMAIL "tammasorn.it@gmail.com"
 #define USER_PASS "123456"
 
 // Firebase
