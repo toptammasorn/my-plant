@@ -61,7 +61,7 @@ const ProfilePage = () => {
           <CardProfile cardName="Last name" information="Taninipong" /> */}
 
           <motion.div
-            className="bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
+            className="bg-white/10 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
             whileHover={{
               y: -5,
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
@@ -97,7 +97,7 @@ const ProfilePage = () => {
             )}
           </motion.div>
 
-          <CardPhoto className="w-[250px]" />
+          <CardPhoto className="w-[250px] bg-white/10" />
         </motion.div>
       </main>
     </div>
