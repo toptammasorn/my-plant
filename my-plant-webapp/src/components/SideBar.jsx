@@ -143,8 +143,8 @@ const Sidebar = () => {
               ) : (
                 <Link key={item.href} to={item.href}>
                   <motion.div
-                    className={`flex items-center p-4 text-sm font-medium rounded-lg hover:bg-green-800 transition-colors mb-2 gap-5
-                    ${location.pathname === item.href ? "bg-green-700" : ""}
+                    className={`flex items-center p-4 text-sm font-medium rounded-lg hover:bg-green-700 transition-colors mb-2 gap-5
+                    ${location.pathname === item.href ? "bg-green-900" : ""}
                     `}
                   >
                     <item.icon
