@@ -8,6 +8,7 @@
 #include "DS18B20out.h"
 #include "DS18B20in.h"
 #include <BH1750sensor.h>
+#include "WaterLevelSensor.h"
 
 // Wi-Fi and Firebase credentials
 #define WIFI_SSID "Laptop"
@@ -74,6 +75,9 @@ void setup() {
   // BH1750 sensor
   Wire.begin();
   lightMeter.begin();
+
+  // XKC-Y25-V
+  pinMode(4, INPUT_PULLUP);
 }
 
 void loop() {
@@ -122,6 +126,12 @@ void loop() {
     } else {
       Serial.println("❌ Failed to read from BH1750 sensor!");
     }
+
+    // XKC-Y25-V
+    water_level = digitalRead(4);
+    Serial.print("XKC-Y25-V: ");
+    Serial.println(digitalRead(4));
+    Serial.printf("💧 Water level: %s\n", water_level == 0 ? "💦 Detected" : "❌ Not Detected");
   }
 
   // Send to Firebase every 3 seconds (non-blocking)
